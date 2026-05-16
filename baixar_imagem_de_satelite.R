@@ -47,4 +47,4 @@ ggplot() +
 
 pedi_sat <- pedi |>
   maptiles::get_tiles(provider = "Esri.WorldImagery",
-                      zoom = 18)
+                      zoom = 15)
