@@ -33,7 +33,7 @@ ggplot() +
 ## Exportar ----
 
 pedi |>
-  sf::st_write("pedi.shp")
+  sf::st_write("shapefiles/pedi/pedi.shp")
 
 # Recife ----
 
