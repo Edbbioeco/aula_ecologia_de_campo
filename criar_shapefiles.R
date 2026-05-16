@@ -20,3 +20,10 @@ pedi <- geobr::read_conservation_units() |>
   sf::st_make_valid() |>
   dplyr::filter(name_conservation_unit |> stringr::str_detect("DOIS IRMÃOS") &
                   category == "Parque")
+
+## Visualizar ----
+
+pedi
+
+ggplot() +
+  geom_sf(data = pedi, color = "black")
