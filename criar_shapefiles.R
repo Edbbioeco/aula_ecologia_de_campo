@@ -71,3 +71,8 @@ ufpe
 
 ggplot() +
   geom_sf(data = ufpe, color = "black")
+
+## Exportar ----
+
+ufpe |>
+  sf::st_write("ufpe.shp")
