@@ -75,4 +75,4 @@ ggplot() +
 
 ### Exportar ----
 
-ufpe_sat |> terra::writeRaster("ufpe_imagem_sat.tif")
+ufpe_sat |> terra::writeRaster("imagens de satélite/ufpe/ufpe_imagem_sat.tif")
