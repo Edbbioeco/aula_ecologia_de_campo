@@ -6,6 +6,8 @@ library(sf)
 
 library(tidyverse)
 
+library(parzer)
+
 library(leaflet)
 
 library(leaflet.extras)
