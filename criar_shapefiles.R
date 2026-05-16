@@ -58,3 +58,10 @@ mapa <- leaflet::leaflet() |>
                                  editOptions = leaflet.extras::editToolbarOptions()) |>
   leafem::addMouseCoordinates() |>
   leaflet::addPolygons(data = sf_ref |> sf::st_cast("POLYGON"))
+
+## Editar mapa ----
+
+ufpe <- mapa |> mapedit::editMap()
+
+ufpe <- ufpe$drawn
+
