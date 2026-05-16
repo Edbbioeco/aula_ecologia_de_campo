@@ -42,6 +42,14 @@ pedi |>
 recife <- geobr::read_municipality() |>
   dplyr::filter(name_muni == "Recife")
 
+## Visualizar ----
+
+recife
+
+ggplot() +
+  geom_sf(data = recife, color = "black")  +
+  geom_sf(data = pedi, color = "black")
+
 # UFPE ----
 
 ## Shapefile de coordenada de referência ----
