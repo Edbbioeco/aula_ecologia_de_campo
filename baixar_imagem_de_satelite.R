@@ -54,3 +54,7 @@ pedi_sat <- pedi |>
 ggplot() +
   tidyterra::geom_spatraster_rgb(data = pedi_sat) +
   geom_sf(data = pedi, color = "gold", fill = "transparent")
+
+### Exportar ----
+
+pedi_sat |> terra::writeRaster("pedi_imagem_sat.tif")
