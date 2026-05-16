@@ -39,3 +39,12 @@ ggplot() +
   geom_sf(data = pedi, color = "black") +
   geom_sf(data = ufpe, color = "black")
 
+# Imagem de satélite ----
+
+## PEDI ----
+
+### Baixar ----
+
+pedi_sat <- pedi |>
+  maptiles::get_tiles(provider = "Esri.WorldImagery",
+                      zoom = 18)
