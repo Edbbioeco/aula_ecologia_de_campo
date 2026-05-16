@@ -27,3 +27,8 @@ pedi
 
 ggplot() +
   geom_sf(data = pedi, color = "black")
+
+## Exportar ----
+
+pedi |>
+  sf::st_write("pedi.shp")
