@@ -1,3 +1,3 @@
-# Aula teíorico-prática de Ecologia de Campo
+# Aula teórico-prática de Ecologia de Campo
 
-> Scripts usados nas análises ecológicas e produção de mapas. 
+> Scripts usados nas análises ecológicas de diversidade de espécies e produção de mapas de localização. 
