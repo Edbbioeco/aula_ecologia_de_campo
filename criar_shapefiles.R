@@ -39,10 +39,11 @@ pedi |>
 
 ## Shapefile de coordenada de referência ----
 
-sf_ref <- tibble::tibble(lon = "34°56'46\'W" |> parzer::parse_lon(),
-                         lat = "08°20'20\"S" |> parzer::parse_lat()) |>
+sf_ref <- tibble::tibble(lon = "34°57'29\'W" |> parzer::parse_lon(),
+                         lat = "08°03'10.79\"S" |> parzer::parse_lat()) |>
   sf::st_as_sf(coords = c("lon", "lat"),
-               crs = 4674)
+               crs = 4674) |>
+  sf::st_buffer(dist = 10)
 
 sf_ref
 
