@@ -95,4 +95,4 @@ ggplot() +
 ## Exportar ----
 
 ufpe |>
-  sf::st_write("ufpe.shp")
+  sf::st_write("shapefiles/ufpe/ufpe.shp")
