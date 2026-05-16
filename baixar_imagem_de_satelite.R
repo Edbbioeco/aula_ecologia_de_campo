@@ -65,7 +65,7 @@ pedi_sat |> terra::writeRaster("pedi_imagem_sat.tif")
 
 ufpe_sat <- ufpe |>
   maptiles::get_tiles(provider = "Esri.WorldImagery",
-                      zoom = 15)
+                      zoom = 17)
 
 ### Visualizar ----
 
