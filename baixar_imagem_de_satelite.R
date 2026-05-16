@@ -58,3 +58,11 @@ ggplot() +
 ### Exportar ----
 
 pedi_sat |> terra::writeRaster("pedi_imagem_sat.tif")
+
+## UFPE ----
+
+### Baixar ----
+
+ufpe_sat <- ufpe |>
+  maptiles::get_tiles(provider = "Esri.WorldImagery",
+                      zoom = 15)
