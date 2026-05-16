@@ -24,3 +24,18 @@ pedi
 
 ggplot() +
   geom_sf(data = pedi, color = "black")
+
+## Shapefile da UFPE ----
+
+### Importar ----
+
+ufpe <- sf::st_read("ufpe.shp")
+
+### Visualizar ----
+
+ufpe
+
+ggplot() +
+  geom_sf(data = pedi, color = "black") +
+  geom_sf(data = ufpe, color = "black")
+
