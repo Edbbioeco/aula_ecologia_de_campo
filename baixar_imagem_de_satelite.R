@@ -66,3 +66,9 @@ pedi_sat |> terra::writeRaster("pedi_imagem_sat.tif")
 ufpe_sat <- ufpe |>
   maptiles::get_tiles(provider = "Esri.WorldImagery",
                       zoom = 15)
+
+### Visualizar ----
+
+ggplot() +
+  tidyterra::geom_spatraster_rgb(data = ufpe_sat) +
+  geom_sf(data = ufpe, color = "gold", fill = "transparent")
