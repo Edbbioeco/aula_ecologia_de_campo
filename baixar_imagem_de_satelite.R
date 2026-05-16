@@ -6,9 +6,9 @@ library(tidyverse)
 
 library(maptiles)
 
-library(terra)
-
 library(tidyterra)
+
+library(terra)
 
 # Shapefiles ----
 
