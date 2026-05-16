@@ -57,7 +57,7 @@ ggplot() +
 
 ### Exportar ----
 
-pedi_sat |> terra::writeRaster("pedi_imagem_sat.tif")
+pedi_sat |> terra::writeRaster("imagens de satélite/pedi/pedi_imagem_sat.tif")
 
 ## UFPE ----
 
