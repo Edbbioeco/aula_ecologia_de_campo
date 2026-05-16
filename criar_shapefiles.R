@@ -54,7 +54,6 @@ ggplot() +
 mapa <- leaflet::leaflet() |>
   leaflet::addProviderTiles(provider = providers$Esri.WorldImagery) |>
   leaflet.extras::addDrawToolbar(targetGroup = "draw",
-                                 polygonOptions = TRUE,
                                  editOptions = leaflet.extras::editToolbarOptions()) |>
   leafem::addMouseCoordinates() |>
   leaflet::addPolygons(data = sf_ref |> sf::st_cast("POLYGON"))
