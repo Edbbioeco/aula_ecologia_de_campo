@@ -53,7 +53,7 @@ ggplot() +
 ## Exportar ----
 
 recife |>
-  sf::st_write("recife.shp")
+  sf::st_write("shapefiles/recife/recife.shp")
 
 # UFPE ----
 
