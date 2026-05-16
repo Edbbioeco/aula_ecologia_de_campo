@@ -2,9 +2,9 @@
 
 library(geobr)
 
-library(tidyverse)
-
 library(sf)
+
+library(tidyverse)
 
 library(leaflet)
 
