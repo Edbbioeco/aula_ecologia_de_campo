@@ -48,3 +48,9 @@ ggplot() +
 pedi_sat <- pedi |>
   maptiles::get_tiles(provider = "Esri.WorldImagery",
                       zoom = 15)
+
+### Visualizar ----
+
+ggplot() +
+  tidyterra::geom_spatraster_rgb(data = pedi_sat) +
+  geom_sf(data = pedi, color = "gold", fill = "transparent")
