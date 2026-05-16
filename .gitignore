@@ -5,6 +5,7 @@
 .DS_Store
 .quarto
 .positai
+*.Rproj
 *.xlsx
 *.csv
 *.png
