@@ -50,6 +50,11 @@ ggplot() +
   geom_sf(data = recife, color = "black")  +
   geom_sf(data = pedi, color = "black")
 
+## Exportar ----
+
+recife |>
+  sf::st_write("recife.shp")
+
 # UFPE ----
 
 ## Shapefile de coordenada de referência ----
