@@ -72,3 +72,7 @@ ufpe_sat <- ufpe |>
 ggplot() +
   tidyterra::geom_spatraster_rgb(data = ufpe_sat) +
   geom_sf(data = ufpe, color = "gold", fill = "transparent")
+
+### Exportar ----
+
+ufpe_sat |> terra::writeRaster("ufpe_imagem_sat.tif")
