@@ -65,3 +65,9 @@ ufpe <- mapa |> mapedit::editMap()
 
 ufpe <- ufpe$drawn
 
+## Visualizar Shapefile ----
+
+ufpe
+
+ggplot() +
+  geom_sf(data = ufpe, color = "black")
