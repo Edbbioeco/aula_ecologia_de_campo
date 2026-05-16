@@ -35,6 +35,13 @@ ggplot() +
 pedi |>
   sf::st_write("pedi.shp")
 
+# Recife ----
+
+## Baixar ----
+
+recife <- geobr::read_municipality() |>
+  dplyr::filter(name_muni == "Recife")
+
 # UFPE ----
 
 ## Shapefile de coordenada de referência ----
