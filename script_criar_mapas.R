@@ -250,3 +250,69 @@ mapa_pedi <- ggplot(data = br) +
   ggview::canvas(height = 10, width = 12)
 
 mapa_pedi
+
+## Mapa do Parque Estadual Dois Irmãos ----
+
+mapa_ufpe <- ggplot(data = br) +
+  geom_sf(aes(color = "Brasil",
+              fill = "Brasil"),
+          linewidth = 1) +
+  geom_sf(data = pe,
+          aes(color = "Pernambuco",
+              fill = "Pernambuco"),
+          linewidth = 1) +
+  geom_sf(data = recife,
+          aes(color = "Recife",
+              fill = "Recife"),
+          linewidth = 1) +
+  geom_sf(data = pedi,
+          aes(color = "PEDI",
+              fill = "PEDI"),
+          linewidth = 1) +
+  tidyterra::geom_spatraster_rgb(data = ufpe_sat) +
+  geom_sf(data = ufpe,
+          aes(color = "UFPE",
+              fill = "UFPE"),
+          linewidth = 1) +
+  scale_color_manual(values = c("Brasil" = "black",
+                                "Pernambuco" = "black",
+                                "Recife" = "black",
+                                "PEDI" = "gold",
+                                "UFPE" = "red"),
+                     breaks = c("Brasil",
+                                "Pernambuco",
+                                "Recife",
+                                "PEDI",
+                                "UFPE")) +
+  scale_fill_manual(values = c("Brasil" = "gray",
+                               "Pernambuco" = "goldenrod",
+                               "Recife" = "brown",
+                               "PEDI" = "transparent",
+                               "UFPE" = "transparent"),
+                    breaks = c("Brasil",
+                               "Pernambuco",
+                               "Recife",
+                               "PEDI",
+                               "UFPE")) +
+  labs(color = NULL,
+       fill = NULL) +
+  coord_sf(label_graticule = "SE",
+           xlim = c(-34.9585, -34.94477),
+           ylim = c(-8.061952, -8.045634),
+           expand = FALSE) +
+  scale_x_continuous(breaks = seq(-34.956, -34.946, 0.004)) +
+  ggspatial::annotation_scale(text_cex = 2.5,
+                              location = "bl",
+                              bar_cols = c("black", "gold"),
+                              line_width = 2,
+                              text_col = "gold",
+                              height = unit(0.5, "cm"),
+                              width_hint = 0.1) +
+  theme_bw() +
+  theme(axis.text = element_text(color = "black", size = 20),
+        legend.text = element_text(color = "black", size = 20),
+        legend.title = element_text(color = "black", size = 20),
+        legend.position = "bottom") +
+  ggview::canvas(height = 10, width = 12)
+
+mapa_ufpe
