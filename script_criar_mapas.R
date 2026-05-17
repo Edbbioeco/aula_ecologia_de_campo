@@ -86,3 +86,17 @@ ggplot() +
   geom_sf(data = recife, color = "black") +
   geom_sf(data = pedi, color = "black", fill = "forestgreen") +
   geom_sf(data = ufpe, color = "black", fill = "gold")
+
+## Imagem de satélite do Parque Estadual Dois Irmãos ----
+
+### Importar ----
+
+pedi_sat <- terra::rast("imagens de satélite/pedi/pedi_imagem_sat.tif")
+
+### Visualizar ----
+
+pedi_sat
+
+ggplot() +
+  tidyterra::geom_spatraster_rgb(data = pedi_sat) +
+  geom_sf(data = pedi, color = "gold", fill = "transparent")
