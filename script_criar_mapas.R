@@ -59,3 +59,17 @@ recife
 ggplot() +
   geom_sf(data = pe, color = "black", fill = "goldenrod") +
   geom_sf(data = recife, color = "black", fill = "brown")
+
+## Shapefile do Parque Estadual Dois Irmãos ----
+
+### Importar ----
+
+pedi <- sf::st_read("shapefiles/pedi/pedi.shp")
+
+### Visualizar ----
+
+pedi
+
+ggplot() +
+  geom_sf(data = recife, color = "black") +
+  geom_sf(data = pedi, color = "black", fill = "forestgreen")
