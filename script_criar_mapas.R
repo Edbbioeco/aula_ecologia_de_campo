@@ -100,3 +100,17 @@ pedi_sat
 ggplot() +
   tidyterra::geom_spatraster_rgb(data = pedi_sat) +
   geom_sf(data = pedi, color = "gold", fill = "transparent")
+
+## Imagem de satélite da UFPE ----
+
+### Importar ----
+
+ufpe_sat <- terra::rast("imagens de satélite/ufpe/ufpe_imagem_sat.tif")
+
+### Visualizar ----
+
+ufpe_sat
+
+ggplot() +
+  tidyterra::geom_spatraster_rgb(data = ufpe_sat) +
+  geom_sf(data = ufpe, color = "gold", fill = "transparent")
