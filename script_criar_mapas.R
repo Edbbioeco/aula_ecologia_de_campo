@@ -114,3 +114,73 @@ ufpe_sat
 ggplot() +
   tidyterra::geom_spatraster_rgb(data = ufpe_sat) +
   geom_sf(data = ufpe, color = "gold", fill = "transparent")
+
+# Mapa ----
+
+## Mapa do Brasil ----
+
+mapa_br <- ggplot(data = br) +
+  geom_sf(aes(color = "Brasil",
+              fill = "Brasil"),
+          linewidth = 1) +
+  geom_sf(data = pe,
+          aes(color = "Pernambuco",
+              fill = "Pernambuco"),
+          linewidth = 1) +
+  geom_sf(data = recife,
+          aes(color = "Recife",
+              fill = "Recife"),
+          linewidth = 1) +
+  geom_sf(data = pedi,
+          aes(color = "PEDI",
+              fill = "PEDI"),
+          linewidth = 1) +
+  geom_sf(data = ufpe,
+          aes(color = "UFPE",
+              fill = "UFPE"),
+          linewidth = 1) +
+  scale_color_manual(values = c("Brasil" = "black",
+                                "Pernambuco" = "black",
+                                "Recife" = "black",
+                                "PEDI" = "gold",
+                                "UFPE" = "red"),
+                     breaks = c("Brasil",
+                                "Pernambuco",
+                                "Recife",
+                                "PEDI",
+                                "UFPE")) +
+  scale_fill_manual(values = c("Brasil" = "gray",
+                               "Pernambuco" = "goldenrod",
+                               "Recife" = "brown",
+                               "PEDI" = "transparent",
+                               "UFPE" = "transparent"),
+                    breaks = c("Brasil",
+                               "Pernambuco",
+                               "Recife",
+                               "PEDI",
+                               "UFPE")) +
+  ggmagnify::geom_magnify(from = c(-35.0167,
+                                   -34.86058,
+                                   -8.155123,
+                                   -7.929206),
+                          to = c(-40,
+                                 -40 + 0.15612 * 55,
+                                 -30,
+                                 -30 + 0.225917 * 55),
+                          colour = "darkred",
+                          shape = "rect",
+                          recompute = TRUE,
+                          shadow = TRUE,
+                          linewidth = 2,
+                          expand = FALSE) +
+  labs(color = NULL,
+       fill = NULL) +
+  coord_sf(label_graticule = "NSW") +
+  theme_bw() +
+  theme(axis.text = element_text(color = "black", size = 20),
+        legend.text = element_text(color = "black", size = 20),
+        legend.title = element_text(color = "black", size = 20),
+        legend.position = "bottom") +
+  ggview::canvas(height = 10, width = 12)
+
+mapa_br
