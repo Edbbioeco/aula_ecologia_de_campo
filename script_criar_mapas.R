@@ -18,7 +18,7 @@ library(patchwork)
 
 # Dados ----
 
-## Brasil ----
+## Shapefile do Brasil ----
 
 ### Importar ----
 
@@ -31,7 +31,7 @@ br
 ggplot() +
   geom_sf(data = br)
 
-## Pernambuco ----
+## Sahpefile de Pernambuco ----
 
 ### Filtrar ----
 
