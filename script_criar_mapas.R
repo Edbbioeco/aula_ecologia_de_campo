@@ -316,3 +316,16 @@ mapa_ufpe <- ggplot(data = br) +
   ggview::canvas(height = 10, width = 12)
 
 mapa_ufpe
+
+## Unir mapas ----
+
+mapa_unido <- (mapa_br + (mapa_pedi / mapa_ufpe)) +
+  patchwork::plot_layout(guides = "collect",
+                         widths = c(4, 2)) &
+  theme(legend.position = "bottom")
+
+mapa_unido +
+  ggview::canvas(height = 12, width = 14)
+
+ggsave(filename = "mapa_localizacao.png",
+       height = 12, width = 14)
