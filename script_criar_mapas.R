@@ -45,3 +45,17 @@ pe
 ggplot() +
   geom_sf(data = br, color = "black") +
   geom_sf(data = pe, color = "black", fill = "goldenrod")
+
+## Shapefile de Recife ----
+
+### Importar ----
+
+recife <- sf::st_read("shapefiles/recife/recife.shp")
+
+### Visualizar ----
+
+recife
+
+ggplot() +
+  geom_sf(data = pe, color = "black", fill = "goldenrod") +
+  geom_sf(data = recife, color = "black", fill = "brown")
