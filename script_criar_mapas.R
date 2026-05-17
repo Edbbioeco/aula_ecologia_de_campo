@@ -10,9 +10,9 @@ library(tidyterra)
 
 library(ggmagnify)
 
-library(ggspatial)
-
 library(ggview)
+
+library(ggspatial)
 
 library(patchwork)
 
