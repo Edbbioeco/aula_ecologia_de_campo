@@ -73,3 +73,16 @@ pedi
 ggplot() +
   geom_sf(data = recife, color = "black") +
   geom_sf(data = pedi, color = "black", fill = "forestgreen")
+
+## Shapefile da UFPE ----
+
+ufpe <- sf::st_read("shapefiles/ufpe/ufpe.shp")
+
+### Visualizar ----
+
+ufpe
+
+ggplot() +
+  geom_sf(data = recife, color = "black") +
+  geom_sf(data = pedi, color = "black", fill = "forestgreen") +
+  geom_sf(data = ufpe, color = "black", fill = "gold")
