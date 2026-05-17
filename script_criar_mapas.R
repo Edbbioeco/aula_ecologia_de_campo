@@ -30,3 +30,18 @@ br
 
 ggplot() +
   geom_sf(data = br)
+
+## Pernambuco ----
+
+### Filtrar ----
+
+pe <- br |>
+  dplyr::filter(nam_stt == "Pernambuco")
+
+### Visualizar ----
+
+pe
+
+ggplot() +
+  geom_sf(data = br, color = "black") +
+  geom_sf(data = pe, color = "black", fill = "goldenrod")
