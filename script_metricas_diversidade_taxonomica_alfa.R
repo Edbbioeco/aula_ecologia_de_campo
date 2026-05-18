@@ -1,0 +1,300 @@
+# Carregando os pacotes ----
+
+library(tidyverse)
+
+library(scales)
+
+library(vegan)
+
+library(iNEXT)
+
+# Dados ----
+
+## Importando ----
+
+com <- readr::read_csv("composicao_anuros.csv")
+
+## Visualizando ----
+
+com
+
+com |> dplyr::glimpse()
+
+## Adicionar nome às linhas ----
+
+rownames(com) <- c(paste0("Comunidade 0", 1:9),
+                   paste0("Comunidade ", 10:14))
+
+com |> rownames()
+
+# Diagrama de Whittaker ----
+
+## Calculando ----
+
+whitakker <- com |>
+  tibble::rownames_to_column() |>
+  dplyr::rename("Comunidade" = rowname) |>
+  tidyr::pivot_longer(cols = dplyr::where(is.numeric),
+                      names_to = "Especie",
+                      values_to = "Abundancia") |>
+  dplyr::summarise(Abundancia = Abundancia |> sum(),
+                   .by = c(Especie, Comunidade)) |>
+  dplyr::arrange(Abundancia |> dplyr::desc()) |>
+  dplyr::mutate(Rank = dplyr::row_number(),
+                .by = Comunidade) |>
+  dplyr::filter(Abundancia > 0)
+
+whitakker
+
+## Gráfico ----
+
+whitakker |>
+  ggplot(aes(Rank, Abundancia)) +
+  geom_line(linewidth = 1,
+            color = "black") +
+  facet_wrap(~Comunidade, scales = "free_x") +
+  scale_x_continuous(breaks = scales::breaks_width(1)) +
+  theme_classic()
+
+ggsave(filename = "diversidade_taxonomica_whittaker.png",
+       height = 10,
+       width = 12)
+
+# Índices clássicos de diversidade ----
+
+## Riqueza ----
+
+### Calculando ----
+
+riqueza <- com |> vegan::specnumber()
+
+riqueza
+
+### Criando um dataframe dos dados ----
+
+df_div <- tibble::tibble(Comunidade = com |> rownames(),
+                         Riqueza = riqueza)
+
+df_div
+
+### Gráfico ----
+
+df_div |>
+  ggplot(aes(Comunidade, Riqueza)) +
+  geom_col(color = "black", fill = "gray50") +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+ggsave(filename = "diversidade_taxonomica_riqueza.png",
+       height = 10,
+       width = 12)
+
+## Shannon-Wiener ----
+
+### Calculando ----
+
+shannon_wiener <- com |> vegan::diversity()
+
+shannon_wiener
+
+### Criando um dataframe dos dados ----
+
+df_div <- df_div |>
+  dplyr::mutate(`Shannon-Wiener` = shannon_wiener)
+
+df_div
+
+### Gráfico ----
+
+df_div |>
+  ggplot(aes(Comunidade, `Shannon-Wiener`)) +
+  geom_col(color = "black", fill = "gray50") +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+ggsave(filename = "diversidade_taxonomica_shannon_wienner.png",
+       height = 10,
+       width = 12)
+
+## Gini-Simpson ----
+
+### Calculando ----
+
+gini_simpson <- com |> vegan::diversity(index = "simpson")
+
+gini_simpson
+
+### Criando um dataframe dos dados ----
+
+df_div <- df_div |>
+  dplyr::mutate(`Gini-Simpson` = gini_simpson)
+
+df_div
+
+### Gráfico ----
+
+df_div |>
+  ggplot(aes(Comunidade, `Gini-Simpson`)) +
+  geom_col(color = "black", fill = "gray50") +
+  scale_y_continuous(limits = c(0, 1)) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+ggsave(filename = "diversidade_taxonomica_gini_simpson.png",
+       height = 10,
+       width = 12)
+
+## Equitabilidade de Pielou ----
+
+### Calculando ----
+
+pielou <- shannon_wiener / log(riqueza)
+
+pielou
+
+### Criando um dataframe dos dados ----
+
+df_div <- df_div |>
+  dplyr::mutate(`Equitabilidade de Pielou` = pielou)
+
+df_div
+
+# Gráfico ----
+
+df_div |>
+  ggplot(aes(Comunidade, `Equitabilidade de Pielou`)) +
+  geom_col(color = "black", fill = "gray50") +
+  scale_y_continuous(limits = c(0, 1)) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+ggsave(filename = "diversidade_taxonomica_pielou.png",
+       height = 10,
+       width = 12)
+
+# Indices de Hill ----
+
+## Números de Hill ----
+
+### Calculando ----
+
+hill <- com |> vegan::renyi(scales = 1:2, hill = TRUE)
+
+hill
+
+### Criando um dataframe dos dados ----
+
+df_div <- df_div |>
+  dplyr::bind_cols(hill) |>
+  dplyr::rename("Q = 1" = `1`,
+                "Q = 2" = `2`)
+
+df_div
+
+### Gráfico ----
+
+df_div |>
+  ggplot(aes(Comunidade, `Q = 1`)) +
+  geom_col(color = "black", fill = "gray50") +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+ggsave(filename = "diversidade_taxonomica_hill_q1.png",
+       height = 10,
+       width = 12)
+
+df_div |>
+  ggplot(aes(Comunidade, `Q = 2`)) +
+  geom_col(color = "black", fill = "gray50") +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+ggsave(filename = "diversidade_taxonomica_hill_q2.png",
+       height = 10,
+       width = 12)
+
+## Equitabilidade de Hill ----
+
+### Calculando ----
+
+eq_hill <- hill[2] / hill[1]
+
+eq_hill
+
+### Criando um dataframe dos dados ----
+
+df_div <- df_div |>
+  dplyr::mutate(`Equitabilidade de Hill` = eq_hill[, 1])
+
+df_div
+
+### Gráfico ----
+
+df_div |>
+  ggplot(aes(Comunidade, `Equitabilidade de Hill`)) +
+  geom_col(color = "black", fill = "gray50") +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+ggsave(filename = "diversidade_taxonomica_eq_hill.png",
+       height = 10,
+       width = 12)
+
+## Rarefação baseado por números de Hill com Q = 1 ----
+
+### Calculando ----
+
+int_ext_hillq1 <- com |>
+  t() |>
+  iNEXT::as.incfreq() |>
+  iNEXT::iNEXT(q = 1,
+               datatype = "incidence_freq",
+               endpoint = 21)
+
+int_ext_hillq1
+
+### Gráfico ----
+
+### 1ª extrapolação ----
+
+int_ext_hillq1 |>
+  iNEXT::ggiNEXT(type = 1) +
+  scale_linetype_discrete(labels = c("Interpolado", "Extrapolado")) +
+  scale_colour_manual(values = "orange") +
+  scale_y_continuous(limits = c(1, 17)) +
+  labs(x = "Unidades amostrais", y = "Q = 1") +
+  theme_classic()
+
+ggsave(filename = "rarefacao_int_ext_hillq1.png",
+       height = 10,
+       width = 12)
+
+## Rarefação baseado por números de Hill com Q = 2 ----
+
+### Calculando ----
+
+int_ext_hillq2 <- com |>
+  t() |>
+  iNEXT::as.incfreq() |>
+  iNEXT::iNEXT(q = 2,
+               datatype = "incidence_freq",
+               endpoint = 21)
+
+int_ext_hillq2
+
+### Gráfico ----
+
+### 1ª extrapolação ----
+
+int_ext_hillq2 |>
+  iNEXT::ggiNEXT(type = 1) +
+  scale_linetype_discrete(labels = c("Interpolado", "Extrapolado")) +
+  scale_colour_manual(values = "orange") +
+  scale_fill_manual(values = "orange") +
+  scale_y_continuous(limits = c(1, 13)) +
+  labs(x = "Unidades amostrais", y = "Q = 2") +
+  theme_classic()
+
+ggsave(filename = "rarefacao_int_ext_hillq2.png",
+       height = 10,
+       width = 12)
