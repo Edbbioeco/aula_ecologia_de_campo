@@ -6,7 +6,6 @@
 .quarto
 .positai
 *.Rproj
-*.xlsx
 *.csv
 *.png
 *.xml
