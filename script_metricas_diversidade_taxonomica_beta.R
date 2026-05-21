@@ -1,5 +1,7 @@
 # Carregando pacotes ----
 
+library(readxl)
+
 library(tidyverse)
 
 library(ordenaR)
@@ -16,7 +18,7 @@ library(ggview)
 
 ## Importando ----
 
-com <- readr::read_csv2("composicao_anuros.csv")
+com <- readxl::read_xlsx("comunidades_anuros.xlsx")
 
 ## Visualizando ----
 
