@@ -1,5 +1,7 @@
 # Carregando os pacotes ----
 
+library(readxl)
+
 library(tidyverse)
 
 library(scales)
@@ -12,7 +14,7 @@ library(iNEXT)
 
 ## Importando ----
 
-com <- readr::read_csv("composicao_anuros.csv")
+com <- readxl::read_xlsx("comunidades_anuros.xlsx")
 
 ## Visualizando ----
 
@@ -22,10 +24,10 @@ com |> dplyr::glimpse()
 
 ## Adicionar nome às linhas ----
 
-rownames(com) <- c(paste0("Comunidade 0", 1:9),
-                   paste0("Comunidade ", 10:14))
+com <- com |>
+  tibble::column_to_rownames(var = "Comunidade")
 
-com |> rownames()
+com
 
 # Diagrama de Whittaker ----
 
