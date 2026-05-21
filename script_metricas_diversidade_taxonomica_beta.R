@@ -16,7 +16,7 @@ library(ggview)
 
 ## Importando ----
 
-com <- readr::read_csv("composicao_anuros.csv")
+com <- readr::read_csv2("composicao_anuros.csv")
 
 ## Visualizando ----
 
@@ -26,10 +26,10 @@ com |> dplyr::glimpse()
 
 ## Adicionar nome às linhas ----
 
-rownames(com) <- c(paste0("Com 0", 1:9),
-                   paste0("Com ", 10:14))
+com <- com |>
+  tibble::column_to_rownames(var = "Comunidade")
 
-com |> rownames()
+com
 
 # Gráfico de composição de espécies por abundância ----
 
