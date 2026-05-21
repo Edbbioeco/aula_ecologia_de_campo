@@ -1,5 +1,7 @@
 # Carregando os pacotes ----
 
+library(readxl)
+
 library(tidyverse)
 
 library(vegan)
@@ -10,13 +12,20 @@ library(iNEXT)
 
 ## Importando ----
 
-com <- readr::read_csv("composicao_anuros.csv")
+com <- readxl::read_xlsx("comunidades_anuros.xlsx")
 
 ## Visualizando -----
 
 com
 
 com |> dplyr::glimpse()
+
+## Adicionar nome às linhas ----
+
+com <- com |>
+  tibble::column_to_rownames(var = "Comunidade")
+
+com
 
 # Rarefação baseada em incidencia (Chao1) ----
 
