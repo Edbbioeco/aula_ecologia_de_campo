@@ -54,7 +54,7 @@ whitakker |>
   ggplot(aes(Rank, Abundancia)) +
   geom_line(linewidth = 1,
             color = "black") +
-  facet_wrap(~Comunidade, scales = "free_x") +
+  facet_wrap(~Comunidade, scales = "free") +
   scale_x_continuous(breaks = scales::breaks_width(1)) +
   theme_classic()
 
