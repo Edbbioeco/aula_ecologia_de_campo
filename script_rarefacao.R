@@ -27,7 +27,7 @@ com <- com |>
 
 com
 
-# Rarefação baseada em incidencia (Chao1) ----
+# Rarefação baseada em abundância (Chao1) ----
 
 ## Calculando ----
 
@@ -78,14 +78,14 @@ chao1_trat |>
   scale_color_manual(values = c("royalblue", "orange")) +
   scale_fill_manual(values = c("royalblue", "orange")) +
   scale_x_continuous(breaks = seq(0, 14, 2)) +
-  scale_y_continuous(limits = c(1, 21)) +
+  scale_y_continuous(limits = c(1, 23)) +
   theme_classic()
 
 ggsave(filename = "rarefacao_chao1.png",
        height = 10,
        width = 12)
 
-# Rarefação baseada em abundância ----
+# Rarefação baseada em incidência ----
 
 ## Chao 2 ----
 
@@ -240,7 +240,7 @@ int_ext_amostras <- com |>
   iNEXT::as.incfreq() |>
   iNEXT::iNEXT(q = 0,
                datatype = "incidence_freq",
-               endpoint = 21)
+               endpoint = 140)
 
 int_ext_amostras
 
@@ -253,7 +253,6 @@ int_ext_amostras |>
   scale_fill_manual(values = "orange") +
   labs(x = "Unidades amostrais", y = "Riqueza") +
   theme_classic()
-
 ggsave(filename = "rarefacao_int_ext_amostras.png",
        height = 10,
        width = 12)
