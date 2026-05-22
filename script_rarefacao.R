@@ -205,32 +205,6 @@ ggsave(filename = "rarefacao_jack1.png",
 
 # Extrapolação baseada em bootstraping ----
 
-## Baseado em individuos ----
-
-### Calculando ----
-
-int_ext_indi <- com |>
-  colSums() |>
-  iNEXT::iNEXT(q = 0,
-               datatype = "abundance",
-               endpoint = 450)
-
-int_ext_indi
-
-### Gráfico ----
-
-int_ext_indi |>
-  iNEXT::ggiNEXT(type = 1) +
-  scale_linetype_discrete(labels = c("Interpolado", "Extrapolado")) +
-  scale_colour_manual(values = "orange") +
-  scale_fill_manual(values = "orange") +
-  labs(x = "Número de indivíduos", y = "Riqueza") +
-  theme_classic()
-
-ggsave(filename = "rarefacao_int_ext_ind.png",
-       height = 10,
-       width = 12)
-
 ## Baseado em unidades amostrais ----
 
 ### Calculando ----
@@ -254,6 +228,32 @@ int_ext_amostras |>
   labs(x = "Unidades amostrais", y = "Riqueza") +
   theme_classic()
 ggsave(filename = "rarefacao_int_ext_amostras.png",
+       height = 10,
+       width = 12)
+
+## Baseado em individuos ----
+
+### Calculando ----
+
+int_ext_indi <- com |>
+  colSums() |>
+  iNEXT::iNEXT(q = 0,
+               datatype = "abundance",
+               endpoint = 450)
+
+int_ext_indi
+
+### Gráfico ----
+
+int_ext_indi |>
+  iNEXT::ggiNEXT(type = 1) +
+  scale_linetype_discrete(labels = c("Interpolado", "Extrapolado")) +
+  scale_colour_manual(values = "orange") +
+  scale_fill_manual(values = "orange") +
+  labs(x = "Número de indivíduos", y = "Riqueza") +
+  theme_classic()
+
+ggsave(filename = "rarefacao_int_ext_ind.png",
        height = 10,
        width = 12)
 
