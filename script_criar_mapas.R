@@ -1,18 +1,3 @@
-# Baixar pacotes ----
-
-# Rodar apenas uma vez!
-
-install.packages(c("sf",
-                   "tidyverse",
-                   "terra",
-                   "tidyverse",
-                   "ggview",
-                   "ggspatial",
-                   "patchwork",
-                   "devtools"))
-
-devtools::install_github("hughjonesd/ggmagnify")
-
 # Pacotes ----
 
 library(sf)
