@@ -1,3 +1,5 @@
 # Aula teórico-prática de Ecologia de Campo
 
-> Scripts usados nas análises ecológicas de diversidade de espécies e produção de mapas de localização. 
+> Scripts usados nas análises ecológicas de diversidade de espécies e produção de mapas de localização.
+
+![](diversidade_taxonomica_beta_grafico_circulos.png)
