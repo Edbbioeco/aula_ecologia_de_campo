@@ -1,3 +1,27 @@
+# Baixar Pacotes ----
+
+pacotes <- require(c("readxl",
+                     "tidyverse",
+                     "devtools",
+                     "vegan",
+                     "betapart",
+                     "reshape2",
+                     "ggview"))
+
+lapply(pacotes,
+       \(pacote){
+
+         if(!requireNamespace(pacotes, quietly = TRUE)){
+
+           install.packages(pacotes)
+
+         }
+
+       }
+)
+
+devtools::install_github("Edbbioeco/ordenaR")
+
 # Carregando pacotes ----
 
 library(readxl)
