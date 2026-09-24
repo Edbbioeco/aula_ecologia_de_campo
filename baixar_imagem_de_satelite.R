@@ -1,3 +1,23 @@
+# Baixar Pacotes ----
+
+pacotes <- require(c("sf",
+                     "tidyverse",
+                     "maptiles",
+                     "tidyterra",
+                     "terra"))
+
+lapply(pacotes,
+       \(pacote){
+
+         if(!requireNamespace(pacotes, quietly = TRUE)){
+
+           install.packages(pacotes)
+
+           }
+
+         }
+       )
+
 # Pacotes ----
 
 library(sf)
