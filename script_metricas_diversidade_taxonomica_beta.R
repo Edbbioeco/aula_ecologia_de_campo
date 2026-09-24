@@ -1,12 +1,12 @@
 # Baixar Pacotes ----
 
-pacotes <- require(c("readxl",
-                     "tidyverse",
-                     "devtools",
-                     "vegan",
-                     "betapart",
-                     "reshape2",
-                     "ggview"))
+pacotes <- c("readxl",
+             "tidyverse",
+             "devtools",
+             "vegan",
+             "betapart",
+             "reshape2",
+             "ggview")
 
 lapply(pacotes,
        \(pacote){
@@ -66,7 +66,8 @@ com |>
   ordenaR::order_bar(gradient = "rowname",
                      species = 2:18,
                      direct = FALSE) +
-  theme(axis.text.x = element_text(angle = 90))
+  theme(axis.text.x = element_text(angle = 90)) +
+  ggview::canvas(height = 10, width = 12)
 
 ggsave(filename = "diversidade_taxonomica_beta_grafico_barras.png",
        height = 10,
@@ -79,7 +80,8 @@ com |>
   ordenaR::order_circle(gradient = "rowname",
                         species = 2:18,
                         direct = FALSE) +
-  theme(axis.text.x = element_text(angle = 90))
+  theme(axis.text.x = element_text(angle = 90)) +
+  ggview::canvas(height = 10, width = 12)
 
 ggsave(filename = "diversidade_taxonomica_beta_grafico_circulos.png",
        height = 10,
