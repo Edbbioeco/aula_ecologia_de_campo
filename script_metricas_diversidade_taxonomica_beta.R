@@ -66,7 +66,11 @@ com |>
   ordenaR::order_bar(gradient = "rowname",
                      species = 2:18,
                      direct = FALSE) +
-  theme(axis.text.x = element_text(angle = 90)) +
+  labs(x = "Sampling plots") +
+  theme(axis.text = element_text(size = 20),
+        axis.title = element_text(size = 20),
+        axis.text.x = element_text(angle = 90),
+        strip.text = element_text(size = 20)) +
   ggview::canvas(height = 10, width = 12)
 
 ggsave(filename = "diversidade_taxonomica_beta_grafico_barras.png",
