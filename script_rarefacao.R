@@ -1,3 +1,22 @@
+# Baixar Pacotes ----
+
+pacotes <- require(c("readxl",
+                     "tidyverse",
+                     "vegan",
+                     "iNEXT"))
+
+lapply(pacotes,
+       \(pacote){
+
+         if(!requireNamespace(pacotes, quietly = TRUE)){
+
+           install.packages(pacotes)
+
+         }
+
+       }
+)
+
 # Carregando os pacotes ----
 
 library(readxl)
