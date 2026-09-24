@@ -1,3 +1,25 @@
+# Baixar Pacotes ----
+
+pacotes <- require(c("geobr",
+                     "sf",
+                     "tidyverse",
+                     "parzer",
+                     "leaflet",
+                     "leaflet.extras",
+                     "leafem"))
+
+lapply(pacotes,
+       \(pacote){
+
+         if(!requireNamespace(pacotes, quietly = TRUE)){
+
+           install.packages(pacotes)
+
+         }
+
+       }
+)
+
 # Pacotes ----
 
 library(geobr)
