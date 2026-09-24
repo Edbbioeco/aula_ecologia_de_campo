@@ -1,3 +1,28 @@
+# Baixar Pacotes ----
+
+pacotes <- require(c("sf",
+                     "tidyverse",
+                     "terra",
+                     "tidyterra",
+                     "devtools",
+                     "ggview",
+                     "ggspatial",
+                     "patchwork"))
+
+lapply(pacotes,
+       \(pacote){
+
+         if(!requireNamespace(pacotes, quietly = TRUE)){
+
+           install.packages(pacotes)
+
+         }
+
+       }
+)
+
+devtools::install_github("hughjonesd/ggmagnify")
+
 # Pacotes ----
 
 library(sf)
